@@ -12,13 +12,14 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (_, res) => {
     try {
-        const spending = await Spending.find()[0]
+        const spending = await Spending.find()
+        
         res.status(200).json({
-            food: spending.food,
-            health: spending.health,
-            studies: spending.studies,
-            entertainment: spending.entertainment,
-            fixedExpenses: spending.fixedExpenses   ,
+            food: spending[0].food,
+            health: spending[0].health,
+            studies: spending[0].studies,
+            entertainment: spending[0].entertainment,
+            fixedExpenses: spending[0].fixedExpenses   ,
         })
     } catch (error) {
         res.status(500).json({ error: error })
