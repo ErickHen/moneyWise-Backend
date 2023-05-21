@@ -28,7 +28,6 @@ router.patch('/', async (req, res) => {
 
             return
         }
-
         res.status(200).json(req.body)
     } catch (error) {
         res.status(500).json({ error: error })

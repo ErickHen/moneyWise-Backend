@@ -12,8 +12,14 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (_, res) => {
     try {
-        const spendings = await Spending.find()
-        res.status(200).json(spendings)
+        const spending = await Spending.find()
+        res.status(200).json({
+            food: spending.food,
+            health: spending.health,
+            studies: spending.studies,
+            entertainment: spending.entertainment,
+            fixedExpenses: spending.fixedExpenses   ,
+        })
     } catch (error) {
         res.status(500).json({ error: error })
     }
@@ -36,15 +42,11 @@ router.patch('/', async (req, res) => {
 })
 
 router.delete('/', async (req, res) => {
-    const id = req.params.id
-
     const spending = await Spending.find()
-
     if (!spending) {
         res.status(422).json({ message: 'User not found!' })
         return
     }
-
     try {
         await Spending.deleteOne()
 
