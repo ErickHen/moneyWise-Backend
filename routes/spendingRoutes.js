@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (_, res) => {
     try {
-        const spending = await Spending.find()
+        const spending = await Spending.find()[0]
         res.status(200).json({
             food: spending.food,
             health: spending.health,

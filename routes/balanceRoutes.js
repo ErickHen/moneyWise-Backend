@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (_, res) => {
     try {
-        const balance = await Balance.find()
+        const balance = await Balance.find()[0]
         res.status(200).json(balance)
     } catch (error) {
         res.status(500).json({ error: error })
